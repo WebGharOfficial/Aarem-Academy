@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In | Aarem Online Educational Academy</title>
+  <title>Sign Up | Aarem Online Educational Academy</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,21 +39,21 @@
   <main>
     <section class="hero" style="text-align:center;">
       <div class="hero-content" style="margin:auto;max-width:400px;">
-        <h1>Sign In</h1>
-        <p>Sign in to your Aarem Academy account using Google.</p>
-        <div id="google-signin-container">
+        <h1>Sign Up</h1>
+        <p>Create your Aarem Academy account using Google.</p>
+        <div id="google-signup-container">
           <div id="g_id_onload"
                data-client_id="426585489809-3k92kji08j9ltbka59cpkvu03ireg5aj.apps.googleusercontent.com"
-               data-context="signin"
+               data-context="signup"
                data-ux_mode="popup"
-               data-callback="handleGoogleSignInNav"
+               data-callback="handleGoogleSignUp"
                data-auto_prompt="false">
           </div>
           <div class="g_id_signin"
                data-type="standard"
                data-shape="rectangular"
                data-theme="outline"
-               data-text="signin_with"
+               data-text="signup_with"
                data-size="large"
                data-logo_alignment="left">
           </div>
@@ -72,7 +72,7 @@
       }).join(''));
       return JSON.parse(jsonPayload);
     }
-    function handleGoogleSignInNav(response) {
+    function handleGoogleSignUp(response) {
       const data = parseJwt(response.credential);
       localStorage.setItem('aarem_google_user', JSON.stringify(data));
       window.location.href = 'index.html';
