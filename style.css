@@ -2021,4 +2021,101 @@ footer::before {
   .lecturer-card {
     padding: 2rem 1rem;
   }
+}
+
+/* Our Services Section */
+.our-services {
+  padding: 4rem 2rem 2rem 2rem;
+  background: var(--light-gray);
+  text-align: center;
+}
+.our-services h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--secondary-blue);
+  position: relative;
+}
+.our-services h2::after {
+  content: '';
+  display: block;
+  margin: 1rem auto 0 auto;
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+.services-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.service-card {
+  background: var(--white);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 2rem;
+}
+.service-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  background: var(--light-gray);
+}
+.service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-teal-dark);
+  margin-bottom: 0.8rem;
+}
+.service-card p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+.service-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-heavy);
+}
+@media (max-width: 1024px) {
+  .services-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-card {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+/* 3D Card Hover Animation for All Cards */
+.feature:hover,
+.service-card:hover,
+.testimonial:hover,
+.faq-item:hover,
+.calendar-event:hover,
+.lecturer-card:hover {
+  transform: perspective(800px) rotateY(8deg) rotateX(8deg) scale(1.04) translateY(-12px) !important;
+  box-shadow: 0 12px 32px rgba(0, 180, 216, 0.18), 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+/* Smooth transition for all cards */
+.feature,
+.service-card,
+.testimonial,
+.faq-item,
+.calendar-event,
+.lecturer-card {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
 } 

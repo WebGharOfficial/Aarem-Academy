@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTestimonialCards();
     initializeFAQCards();
     initializeCalendarEventCards();
+    initialize3DCardHover();
 });
 
 // Scroll Progress Bar
@@ -457,39 +458,15 @@ function initializeMobileMenu() {
 // Enhanced Feature Cards with Advanced Interactions
 function initializeFeatureCards() {
     const featureCards = document.querySelectorAll('.feature');
-    
     featureCards.forEach(card => {
-        // Magnetic hover effect
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-            
-            card.style.transform = `translateY(-20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-        
-        // Reset transform on mouse leave
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
-        });
-        
         // Click effect with particles
         card.addEventListener('click', (e) => {
             createParticleEffect(e, card);
         });
-        
         // Add floating particles on hover
         card.addEventListener('mouseenter', () => {
             createFloatingParticles(card);
         });
-        
-        // Remove particles on mouse leave
         card.addEventListener('mouseleave', () => {
             removeFloatingParticles(card);
         });
@@ -603,37 +580,11 @@ function removeFloatingParticles(card) {
 // Enhanced Testimonial Cards
 function initializeTestimonialCards() {
     const testimonialCards = document.querySelectorAll('.testimonial');
-    
     testimonialCards.forEach(card => {
-        // Parallax effect on mouse move
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const moveX = (x - centerX) / 20;
-            const moveY = (y - centerY) / 20;
-            
-            card.style.transform = `translateY(-15px) rotateX(${moveY}deg) rotateY(${moveX}deg)`;
-        });
-        
-        // Reset on mouse leave
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
-        });
-        
         // Glow effect on hover
         card.addEventListener('mouseenter', () => {
-            card.style.boxShadow = `
-                0 25px 50px rgba(0, 180, 216, 0.15),
-                0 0 0 1px rgba(0, 180, 216, 0.1),
-                0 0 30px rgba(0, 180, 216, 0.1)
-            `;
+            card.style.boxShadow = `0 25px 50px rgba(0, 180, 216, 0.15), 0 0 0 1px rgba(0, 180, 216, 0.1), 0 0 30px rgba(0, 180, 216, 0.1)`;
         });
-        
         card.addEventListener('mouseleave', () => {
             card.style.boxShadow = '';
         });
@@ -643,17 +594,7 @@ function initializeTestimonialCards() {
 // Enhanced FAQ Cards
 function initializeFAQCards() {
     const faqCards = document.querySelectorAll('.faq-item');
-    
     faqCards.forEach(card => {
-        // Slide effect on hover
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateX(15px) translateY(-5px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateX(0) translateY(0) scale(1)';
-        });
-        
         // Enhanced click animation
         card.addEventListener('click', (e) => {
             const ripple = document.createElement('div');
@@ -671,7 +612,6 @@ function initializeFAQCards() {
                 top: ${e.offsetY - 10}px;
                 z-index: 10;
             `;
-            
             card.appendChild(ripple);
             setTimeout(() => ripple.remove(), 600);
         });
@@ -681,33 +621,11 @@ function initializeFAQCards() {
 // Enhanced Calendar Event Cards
 function initializeCalendarEventCards() {
     const eventCards = document.querySelectorAll('.calendar-event');
-    
     eventCards.forEach(card => {
-        // 3D tilt effect
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 15;
-            const rotateY = (centerX - x) / 15;
-            
-            card.style.transform = `translateX(15px) translateY(-5px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-        });
-        
-        // Reset on mouse leave
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateX(0) translateY(0) rotateY(0deg) rotateX(0deg)';
-        });
-        
         // Pulse effect on hover
         card.addEventListener('mouseenter', () => {
             card.style.animation = 'calendarPulse 2s ease-in-out infinite';
         });
-        
         card.addEventListener('mouseleave', () => {
             card.style.animation = '';
         });
@@ -790,4 +708,33 @@ function initializeScrollToTop() {
             behavior: 'smooth'
         });
     });
+}
+
+// 3D Card Hover Effect for All Card Types
+function initialize3DCardHover() {
+  const cardSelectors = [
+    '.feature',
+    '.service-card',
+    '.testimonial',
+    '.faq-item',
+    '.calendar-event',
+    '.lecturer-card'
+  ];
+  const cards = document.querySelectorAll(cardSelectors.join(','));
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 12;
+      const rotateY = (centerX - x) / 12;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04) translateY(-12px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)';
+    });
+  });
 } 
